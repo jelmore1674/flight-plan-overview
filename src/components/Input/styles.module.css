@@ -1,0 +1,7 @@
+/* Style for the Input Wrapper */
+.inputWrapper {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
