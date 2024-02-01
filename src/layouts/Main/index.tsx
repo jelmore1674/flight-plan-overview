@@ -14,7 +14,9 @@ export function MainLayout() {
 
   return (
     <div>
-      <p style={{ position: "absolute", top: -10, left: 10 }}>{currentVersion}</p>
+      <p style={{ position: "absolute", top: -10, left: 10 }}>
+        {currentVersion}
+      </p>
       <div
         style={{
           display: "flex",
