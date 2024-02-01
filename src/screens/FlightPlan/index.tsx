@@ -51,6 +51,8 @@ export default function FlightPlan() {
     setLoading(false);
   };
 
+  flightPlan.atc = null;
+
   const saveUsername = () => {
     dispatch(updateUsername({ username: value }));
   };
@@ -75,68 +77,71 @@ export default function FlightPlan() {
               <AirportInfo type="alternate" airport={flightPlan.alternate} />
             </div>
             <div className={styles.detailsWrapper}>
-              <InfoBox label="Callsign" text={flightPlan.atc.callsign} />
-              <InfoBox label="Aircraft" text={flightPlan.aircraft.icao_code} />
+              <InfoBox
+                label="Callsign"
+                text={flightPlan?.atc?.callsign ?? ""}
+              />
+              <InfoBox label="Aircraft" text={flightPlan?.aircraft?.icao_code ?? ""} />
               <InfoBox
                 label="Distance"
-                text={flightPlan.general.route_distance}
+                text={flightPlan?.general?.route_distance ?? ""}
                 unit={"NM"}
               />
               <InfoBox
                 label="ZFW"
-                text={sanitizeWeights(flightPlan.weights.est_zfw)}
-                unit={flightPlan.params.units}
+                text={sanitizeWeights(flightPlan?.weights.est_zfw)}
+                unit={flightPlan?.params?.units ?? ""}
               />
               <InfoBox
                 label="Block Fuel"
-                text={sanitizeWeights(flightPlan.fuel.plan_ramp)}
-                unit={flightPlan.params.units}
+                text={sanitizeWeights(flightPlan?.fuel.plan_ramp)}
+                unit={flightPlan?.params.units}
               />
-              {!CARGO_AIRLINES.includes(flightPlan.general.icao_airline) && (
+              {!CARGO_AIRLINES.includes(flightPlan?.general?.icao_airline) && (
                 <InfoBox
                   label="Passengers"
-                  text={flightPlan.weights.pax_count}
+                  text={flightPlan?.weights.pax_count}
                 />
               )}
               <InfoBox
                 label="Payload"
-                text={sanitizeWeights(flightPlan.weights.payload)}
-                unit={flightPlan.params.units}
+                text={sanitizeWeights(flightPlan?.weights.payload)}
+                unit={flightPlan?.params.units}
               />
               <InfoBox
                 label="ETOW"
-                text={sanitizeWeights(flightPlan.weights.est_tow)}
-                unit={flightPlan.params.units}
+                text={sanitizeWeights(flightPlan?.weights.est_tow)}
+                unit={flightPlan?.params.units}
               />
               <InfoBox
                 label="Altitude"
-                text={flightPlan.general.initial_altitude}
+                text={flightPlan?.general.initial_altitude}
               />
               <InfoBox
                 label="CI / Cruise"
-                text={`${flightPlan.general.costindex} / ${flightPlan.general.cruise_mach}`}
+                text={`${flightPlan?.general.costindex} / ${flightPlan?.general.cruise_mach}`}
               />
               <InfoBox
                 label="Cruise Wind"
-                text={`${flightPlan.general.avg_wind_dir}/${flightPlan.general.avg_wind_spd}`}
+                text={`${flightPlan?.general.avg_wind_dir}/${flightPlan?.general.avg_wind_spd}`}
               />
               <InfoBox
                 label="Isa Dev."
-                text={flightPlan.general.avg_temp_dev}
+                text={flightPlan?.general.avg_temp_dev}
                 unit="°"
                 temp={true}
               />
-              <InfoBox label="Route" text={flightPlan.general.route} />
+              <InfoBox label="Route" text={flightPlan?.general.route} />
               {hasFlightFactor &&
                 FlightFactorAircraft.includes(
-                  flightPlan.aircraft.base_type
+                  flightPlan?.aircraft.base_type
                 ) && (
                   <div style={{ width: "100%" }}>
                     <h2>Weights</h2>
                     <WeightBox
                       {...calculateWeightDistribution(
-                        parseInt(flightPlan.weights.payload),
-                        flightPlan.aircraft.base_type as "B752" | "B763"
+                        parseInt(flightPlan?.weights.payload),
+                        flightPlan?.aircraft.base_type as "B752" | "B763"
                       )}
                     />
                   </div>

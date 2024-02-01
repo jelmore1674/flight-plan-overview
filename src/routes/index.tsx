@@ -2,6 +2,7 @@ import App from "../App";
 import { createBrowserRouter, Outlet } from "react-router-dom";
 import { MainLayout } from "../layouts/Main";
 import { Checklist, FlightPlan, Settings } from "../screens";
+import FlightPlanFallback from "../screens/FlightPlan/fallback";
 
 export const routes = {
   CHECKLIST: "/checklist",
@@ -17,7 +18,8 @@ export default createBrowserRouter([
     children: [
       {
         path: routes.FLIGHT_PLAN,
-        element: <FlightPlan />
+        element: <FlightPlan />,
+        errorElement: <FlightPlanFallback />
       },
       {
         path: routes.CHECKLIST,

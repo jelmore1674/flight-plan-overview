@@ -10,6 +10,7 @@ const ONE_HOUR = 3600000;
 
 function App() {
   useEffect(() => {
+    checkUpdate().then(info => console.log({info})).catch((e) => console.log({ e }));
     const checkForUpdate = setInterval(async () => {
       try {
         await checkUpdate();
