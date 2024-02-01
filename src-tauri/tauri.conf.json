@@ -8,7 +8,7 @@
   },
   "package": {
     "productName": "flight-plan-overview",
-    "version": "0.0.2"
+    "version": "0.0.3"
   },
   "tauri": {
     "allowlist": {
@@ -43,7 +43,7 @@
     "updater": {
       "active": true,
       "endpoints": [
-        "https://releases.justinelmore.dev/flight-plan-overview/{{target}}/{{arch}}/{{current_version}}"
+        "http://localhost:6250/flight-plan-overview/{{target}}/{{arch}}/{{current_version}}"
       ],
       "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDI0RDY3QjQxRjA2NTFCQTYKUldTbUcyWHdRWHZXSktCbFhBL3ppOGswRDI0bCs0YVp1WVltb3BRKzl1YzR4dFl0SG9qMnNISkgK"
     },
