@@ -1,4 +1,5 @@
 import { SimbriefData } from "../../types/simbrief";
+import { invoke } from "@tauri-apps/api";
 
 interface Aircraft {
   /**
@@ -87,6 +88,9 @@ export function calculateWeightDistribution(
   payload: number,
   icao: "B752" | "B763"
 ) {
+  invoke("calculate_weight", { payload, icao }).then((res) =>
+    console.log({ res })
+  );
   // Create pallets and get the most even weight between pallets and cargo
   const newPallets = createPalletWeights(AIRCRAFT[icao], payload).reduce(
     (acc, pal) => {

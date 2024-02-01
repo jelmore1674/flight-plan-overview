@@ -12,7 +12,7 @@ export function MainLayout() {
         }}
       >
         <Link to={routes.FLIGHT_PLAN}>Flight Plan</Link>
-        <Link to={routes.CHECKLIST}>Checklist</Link>
+        {/* <Link to={routes.CHECKLIST}>Checklist</Link> */}
         <Link to={routes.SETTINGS}>Settings</Link>
       </div>
       <Outlet />

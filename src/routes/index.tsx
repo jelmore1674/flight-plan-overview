@@ -4,9 +4,9 @@ import { MainLayout } from "../layouts/Main";
 import { Checklist, FlightPlan, Settings } from "../screens";
 
 export const routes = {
-  HOME: "/",
   CHECKLIST: "/checklist",
   FLIGHT_PLAN: "/",
+  HOME: "/",
   SETTINGS: "/settings"
 };
 
@@ -17,17 +17,7 @@ export default createBrowserRouter([
     children: [
       {
         path: routes.FLIGHT_PLAN,
-        element: (
-          <FlightPlan />
-          // <div>
-          //   <h1>Hello world!</h1>
-          //   <img
-          //     src="https://www.simbrief.com/ofp/uads/KPHLKRFD_1706164424_ROUTE.gif"
-          //     alt="blah"
-          //   />
-          //   <Link to="/test">Test</Link>
-          // </div>
-        )
+        element: <FlightPlan />
       },
       {
         path: routes.CHECKLIST,
@@ -38,9 +28,5 @@ export default createBrowserRouter([
         element: <Settings />
       }
     ]
-  },
-  {
-    path: "test",
-    element: <App />
   }
 ]);

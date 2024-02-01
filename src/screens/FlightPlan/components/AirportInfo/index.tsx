@@ -1,31 +1,38 @@
-import { FaRoad } from "react-icons/fa6";
+import {
+  FaPlaneArrival,
+  FaPlaneDeparture,
+  FaRoad,
+  FaTriangleExclamation
+} from "react-icons/fa6";
 import { Airport, AlternateAirport } from "../../../../types/simbrief";
 import styles from "./styles.module.css";
 
+const ICONS = {
+  departure: FaPlaneDeparture,
+  arrival: FaPlaneArrival,
+  alternate: FaTriangleExclamation
+};
+
 interface Props {
-  label: string;
+  type: "departure" | "arrival" | "alternate";
   airport: Airport | AlternateAirport;
 }
 
-export function AirportInfo({ label, airport }: Props) {
+export function AirportInfo({ type, airport }: Props) {
+  const Icon = ICONS[type];
   return (
-    <div className={`${styles.airportWrapper}`}>
-      <h2 className={`${styles.airportLabel}`}>{label}</h2>
-      <div>{airport.icao_code}</div>
-      <div
-        style={{
-          height: 48,
-          display: "flex",
-          justifyContent: "space-evenly",
-          alignItems: "center",
-          gap: 8
-        }}
-      >
-        <FaRoad size="32" />
-        <div style={{ fontSize: 32 }}>{airport.plan_rwy}</div>
+    <div className={`${styles.airportWrapper} ${styles[type]}`}>
+      <div className={styles.innerWrapper}>
+        <div className={styles.airportLabelWrapper}>
+          <Icon />
+          <p>{airport.icao_code}</p>
+        </div>
+        <div className={styles.runwayWrapper}>
+          <FaRoad />
+          <p>{airport.plan_rwy}</p>
+        </div>
       </div>
-      <div>{airport.metar}</div>
-      <div>{airport.elevation} ft</div>
+      <p className={styles.elevation}>{airport.elevation} ft</p>
     </div>
   );
-};
+}

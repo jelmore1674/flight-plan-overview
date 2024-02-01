@@ -4,24 +4,19 @@ interface Props {
   label: string;
   text: string;
   unit?: string;
+  temp?: boolean;
 }
 
-export function InfoBox({ label, text, unit }: Props) {
-    return (
-  <div
-    style={{
-      border: "1px solid black",
-      padding: 16,
-      minWidth: 100,
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center"
-    }}
-  >
-    <h3>{label}</h3>
-    <h4>
-      {text} {unit}
-    </h4>
-  </div>
-)
-};
+export function InfoBox({ label, text, unit, temp }: Props) {
+  return (
+    <div className={styles.wrapper}>
+      <h3 className={styles.heading} style={{ margin: 0 }}>
+        {label}
+      </h3>
+      <h4
+        style={{ margin: 0 }}
+        className={styles.text}
+      >{`${text}${unit ? (temp ? unit : ` ${unit}`) : ""}`}</h4>
+    </div>
+  );
+}
