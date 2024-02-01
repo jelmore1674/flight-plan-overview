@@ -7,8 +7,8 @@
     "withGlobalTauri": false
   },
   "package": {
-    "productName": "xweight",
-    "version": "0.0.0"
+    "productName": "flight-plan-overview",
+    "version": "0.0.1"
   },
   "tauri": {
     "allowlist": {
@@ -18,14 +18,17 @@
         "open": true
       },
       "process": {
-       "all": false,
+        "all": false,
         "relaunch": true
+      },
+      "window": {
+        "all": true
       }
     },
     "bundle": {
       "active": true,
       "targets": "all",
-      "identifier": "com.tauri.dev",
+      "identifier": "dev.justinelmore.flight-plan-overview",
       "icon": [
         "icons/32x32.png",
         "icons/128x128.png",
@@ -37,13 +40,22 @@
     "security": {
       "csp": null
     },
+    "updater": {
+      "active": true,
+      "endpoints": [
+        "https://releases.justinelmore.dev/flight-plan-overview/{{target}}/{{arch}}/{{current_version}}"
+      ],
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDI0RDY3QjQxRjA2NTFCQTYKUldTbUcyWHdRWHZXSktCbFhBL3ppOGswRDI0bCs0YVp1WVltb3BRKzl1YzR4dFl0SG9qMnNISkgK"
+    },
     "windows": [
       {
         "fullscreen": false,
         "resizable": true,
-        "title": "xweight",
-        "width": 800,
-        "height": 600
+        "title": "flight-plan-overview",
+        "maxWidth": 2160,
+        "minWidth": 768,
+        "maxHeight": 3880,
+        "minHeight": 300
       }
     ]
   }
