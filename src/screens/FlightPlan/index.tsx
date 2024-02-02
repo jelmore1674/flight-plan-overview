@@ -4,7 +4,7 @@ import {
   CARGO_AIRLINES,
   calculateWeightDistribution,
   fetchFlightPlan,
-  sanitizeWeights,
+  sanitizeWeights
 } from "./utils";
 import { AirportInfo, InfoBox } from "./components";
 import styles from "./styles.module.css";
@@ -60,9 +60,6 @@ export default function FlightPlan() {
     return "B752";
   };
 
-  useEffect(() => {
-    console.log({ aircraft: flightPlan.aircraft });
-  }, []);
   return (
     <div className={styles.wrapper}>
       <div>
