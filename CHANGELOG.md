@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## 0.0.4 [2024-2-1]
+
+- Fix aircraft type not loading weight calculations.
+- Add intial check for update when reloading. 
+
 ## 0.0.3 [2024-2-1]
 
 - Add basic error handling

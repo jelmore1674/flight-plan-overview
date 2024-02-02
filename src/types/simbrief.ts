@@ -85,6 +85,7 @@ interface Atc {
 
 interface Aircraft {
   icao_code: string;
+  icaocode: string;
   base_type: string;
   name: string;
   reg: string;

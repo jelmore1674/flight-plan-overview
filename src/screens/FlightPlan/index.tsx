@@ -5,13 +5,11 @@ import {
   calculateWeightDistribution,
   fetchFlightPlan,
   sanitizeWeights,
-  FlightFactorAircraft
 } from "./utils";
 import { AirportInfo, InfoBox } from "./components";
 import styles from "./styles.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaSpinner } from "react-icons/fa6";
-import { invoke } from "@tauri-apps/api";
 
 interface WeightProps {
   totalCargo: number;
@@ -51,12 +49,20 @@ export default function FlightPlan() {
     setLoading(false);
   };
 
-  flightPlan.atc = null;
-
   const saveUsername = () => {
     dispatch(updateUsername({ username: value }));
   };
 
+  const matchAircraft = (baseType: string) => {
+    if (baseType.includes("B76")) {
+      return "B763";
+    }
+    return "B752";
+  };
+
+  useEffect(() => {
+    console.log({ aircraft: flightPlan.aircraft });
+  }, []);
   return (
     <div className={styles.wrapper}>
       <div>
@@ -81,7 +87,10 @@ export default function FlightPlan() {
                 label="Callsign"
                 text={flightPlan?.atc?.callsign ?? ""}
               />
-              <InfoBox label="Aircraft" text={flightPlan?.aircraft?.icao_code ?? ""} />
+              <InfoBox
+                label="Aircraft"
+                text={flightPlan?.aircraft?.icao_code ?? ""}
+              />
               <InfoBox
                 label="Distance"
                 text={flightPlan?.general?.route_distance ?? ""}
@@ -133,15 +142,14 @@ export default function FlightPlan() {
               />
               <InfoBox label="Route" text={flightPlan?.general.route} />
               {hasFlightFactor &&
-                FlightFactorAircraft.includes(
-                  flightPlan?.aircraft.base_type
-                ) && (
+                (flightPlan.aircraft.base_type.includes("B75") ||
+                  flightPlan.aircraft.base_type.includes("B76")) && (
                   <div style={{ width: "100%" }}>
                     <h2>Weights</h2>
                     <WeightBox
                       {...calculateWeightDistribution(
                         parseInt(flightPlan?.weights.payload),
-                        flightPlan?.aircraft.base_type as "B752" | "B763"
+                        matchAircraft(flightPlan.aircraft.base_type)
                       )}
                     />
                   </div>
